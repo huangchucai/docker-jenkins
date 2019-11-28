@@ -12,6 +12,7 @@ const server = http.createServer((req, res) => {
         if (err) {
             res.statusCode = 404;
             res.end('Not found');
+            return
         }
         if (statObj.isFile()) {
             res.setHeader('Content-type', mime.getType(absPath) + ';charset=utf-8');
@@ -22,6 +23,7 @@ const server = http.createServer((req, res) => {
                 if (err) {
                     res.statusCode = 404;
                     res.end('Not found');
+                    return
                 }
                 res.setHeader('Content-type', 'text/html;charset=uft-8');
                 fs.createReadStream(realPath).pipe(res);
